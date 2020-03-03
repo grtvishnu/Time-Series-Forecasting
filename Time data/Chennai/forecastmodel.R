@@ -30,5 +30,10 @@ tail(forecast[c('ds', 'yhat')])
 exp(4.058228)
 
 # plot(m, forecast)
-
+new <- data.frame(forecast$ds, forecast$yhat)
 prophet_plot_components(m, forecast)
+
+new$forecast.yhat<-exp(new$forecast.yhat)
+new
+
+tail(new)
