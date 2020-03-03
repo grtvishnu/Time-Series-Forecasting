@@ -10,25 +10,10 @@ library(rsample)
 library(yardstick) 
 library(keras)
 library(ggplot2)
-install.packages("yardstick")
 View(c1)
 
-Date <- c1$Date_1
-Date <- format(as.POSIXct(Date, format= '%m-%d-%Y'), format ='%Y-%d-%m' )
-Date
-Date <-as.Date(Date, "%m/%d/%Y %H:%M:%S")
-class(Date)
-c1$Date <- mdy(c1$cdate)
-c1 <- c1 %>%
-  tk_tbl() %>%
-  mutate(cdate = as_date(cdate)) %>%
-  as_tbl_time(cdate = cdate)
-
-class(Date)
-sun_spots
-
 p1 <- c1 %>%
-  ggplot(aes(Date_1, AQI)) +
+  ggplot(aes(dates, AQI)) +
   geom_point(color = palette_light()[[1]], alpha = 0.5) +
   theme_tq() +
   labs(
@@ -36,22 +21,17 @@ p1 <- c1 %>%
   )
 
 p2 <- c1 %>%
-  filter_time("start" ~ "2016") %>%
-  ggplot(aes(Date_1, AQI)) +
+  ggplot(aes(dates, AQI)) +
   geom_line(color = palette_light()[[1]], alpha = 0.5) +
   geom_point(color = palette_light()[[1]]) +
   geom_smooth(method = "loess", span = 0.2, se = FALSE) +
   theme_tq() +
   labs(
-    title = "1749 to 1800 (Zoomed In To Show Cycle)",
-    caption = "datasets::sunspot.month"
+    title = "1asdsad",
+    caption = "dasdasd"
   )
+p_title <- ggdraw() + 
+  draw_label("PM25", size = 18, fontface = "bold", colour = palette_light()[[1]])
 
+plot_grid(p_title, p1, p2, ncol = 1, rel_heights = c(0.1, 1, 1))
 
- 
-c1 <- cbind(c1, Date)
-c1
-
-
-write.csv(c1, file = "newdatec12.csv")
-  x
