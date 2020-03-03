@@ -13,7 +13,7 @@ library(ggplot2)
 c1 <- read.csv("org_ch.csv")
 c1 <- c1[, c(2,8)]
 View(c1)
-
+summary(c1)
 p1 <- c1 %>%
   ggplot(aes(dates, AQI)) +
   geom_point(color = palette_light()[[1]], alpha = 0.5) +
