@@ -70,3 +70,9 @@ plot(m, forecast)
 
 #check seasonality and components
 prophet_plot_components(m, forecast)
+
+
+
+# calculate accuracy(0.4495045)
+
+RMSE(forecast$yhat, y, na.rm = T)
