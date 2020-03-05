@@ -3,10 +3,12 @@ library(prophet)
 library(tidyverse)
 library(tidyquant)
 library(cowplot)
+library(caret)
 
 #read and remove columns from file
-c1 <- read.csv("org_ch.csv")
-c1 <- c1[, c(2,8)]
+c1 <- read.csv("org_dh.csv")
+c1 <- c1[, 7:8]
+c1 <- c1[, c(2,1)]
 View(c1)
 
 # Visualization of data
@@ -14,7 +16,7 @@ qplot(dates, AQI, data = c1)
 
 #store date to ds and log of AQi to y
 ds <- c1$dates
-y <- c1$AQI
+y <- log(c1$AQI)
 
 # Create a datframe with it
 df <- data.frame(ds, y)
@@ -46,7 +48,7 @@ p_title <- ggdraw() +
 plot_grid(p_title, p1, p2, ncol = 1, rel_heights = c(0.1, 1, 1))
 
 #create model m using prophet fuction
-m <- prophet(df)
+m <- prophet(df, daily.seasonality = TRUE)
 
 #create forecasting variable
 future <- make_future_dataframe(m, periods = 7)
@@ -58,10 +60,10 @@ tail(future)
 forecast <- predict(m, future)
 
 #Summary Model
-tail(forecast[c('ds', 'yhat' )])
+tail(forecast[c('ds', 'yhat' )], 7)
 
 #Check result
-exp(4.058228)
+exp(4.925374)
 
 
 #plot forecasting

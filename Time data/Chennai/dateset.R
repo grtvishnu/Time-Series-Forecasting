@@ -5,7 +5,6 @@ c1 <- c1[, c(7,1,2,3,4,5,6)]
 library(tidyverse)
 
 library(lubridate)
-library(nycflights13)
 
 today()
 now()
@@ -16,8 +15,10 @@ mdy("January 31st, 2017")
 
 dmy("31-Jan-2017")
 
-c1<-c1 %>% 
+dh<-dh %>% 
   mutate(dates = make_datetime(Year, Month, Day))
 
 
-write.csv(c1, "org_ch.csv")
+write.csv(dh, "org_dh.csv")
+
+
