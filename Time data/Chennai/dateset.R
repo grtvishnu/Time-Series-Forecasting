@@ -15,8 +15,8 @@ mdy("January 31st, 2017")
 
 dmy("31-Jan-2017")
 
-dh<-dh %>% 
+c1<-c1 %>% 
   mutate(dates = make_datetime(Year, Month, Day))
 
 
-write.csv(dh, "org_dh.csv")
+write.csv(c1, "org_hy1.csv")
