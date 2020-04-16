@@ -99,3 +99,21 @@ for(i in 1:Epochs ){
   model %>% fit(x_train, y_train, epochs=1, batch_size=batch_size, verbose=1, shuffle=FALSE)
   model %>% reset_states()
 }
+
+L = length(x_test)
+scaler = Scaled$scaler
+predictions = numeric(L)
+
+for(i in 1:L){
+  X = x_test[i]
+  dim(X) = c(1,1,1)
+  yhat = model %>% predict(X, batch_size=batch_size)
+  # invert scaling
+  yhat = invert_scaling(yhat, scaler,  c(-1, 1))
+  # invert differencing
+  yhat  = yhat + c2_op$AQI[(n+i)]
+  # store
+  predictions[i] <- yhat
+}
+
+plot(model)
