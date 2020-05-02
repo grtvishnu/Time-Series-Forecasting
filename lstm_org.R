@@ -47,7 +47,7 @@ test <- window(c2_ts, start = 2019)
 fc <- naive(training, h = 10)
 autoplot(fc) + autolayer(test, series = "Test data")
 
-# need large amount of time
+# takes tooo much time
 e <- tsCV (c2_ts, forecastfunction = naive, h = 1)
 mean(e^2 , na.rm = TRUE)
 BoxCox.lambda(c2_ts)
