@@ -4,6 +4,13 @@ library(tensorflow)
 library(recommenderlab)
 library(Seurat)
 
+chennai <- read_csv("c1_cat.csv")
+delhi <- read_csv("d1_cat.csv")
+hydrabad <- read_csv("h1_cat.csv")
+kolkata <- read_csv("k1_cat.csv")
+mumbai <- read_csv("m1_cat.csv")
+
+
 c1 <- read_csv("org_ch.csv")
 c2 <- read.csv("org_dh.csv")
 c3 <- read_csv("org_ko.csv")
